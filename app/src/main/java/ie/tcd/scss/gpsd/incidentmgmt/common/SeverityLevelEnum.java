@@ -1,5 +1,6 @@
 package ie.tcd.scss.gpsd.incidentmgmt.common;
 
+import ie.tcd.scss.gpsd.incidentmgmt.exception.InvalidInputException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -20,7 +21,7 @@ public enum SeverityLevelEnum {
                 return level;
             }
         }
-        throw new IllegalArgumentException("Invalid SeverityLevel ID: " + id);
+        throw new InvalidInputException("Invalid SeverityLevel ID: " + id);
     }
 
     public static SeverityLevelEnum fromName(String name) {
@@ -29,7 +30,7 @@ public enum SeverityLevelEnum {
                 return level;
             }
         }
-        throw new IllegalArgumentException("Invalid SeverityLevel Name: " + name);
+        throw new InvalidInputException("Invalid SeverityLevel Name: " + name);
     }
 
 }
