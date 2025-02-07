@@ -4,6 +4,7 @@ import ie.tcd.scss.gpsd.incidentmgmt.common.IncidentStatusEnum;
 import ie.tcd.scss.gpsd.incidentmgmt.common.IncidentTypeEnum;
 import ie.tcd.scss.gpsd.incidentmgmt.common.SeverityLevelEnum;
 import ie.tcd.scss.gpsd.incidentmgmt.model.dao.Incident;
+import ie.tcd.scss.gpsd.incidentmgmt.model.dto.CreateIncidentDTO;
 import ie.tcd.scss.gpsd.incidentmgmt.model.dto.IncidentDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -30,6 +31,9 @@ public interface IncidentMapper {
     @Mapping(source = "incidentId", target = "incidentId", qualifiedByName = "stringToUuid")
     @Mapping(source = "userId", target = "userId", qualifiedByName = "stringToUuid")
     Incident map(IncidentDTO incidentDTO);
+
+    @Mapping(source = "userId", target = "userId", qualifiedByName = "stringToUuid")
+    Incident map(CreateIncidentDTO createIncidentDTO);
 
     @Named("mapIncidentType")
     static String mapIncidentType(Long id) {

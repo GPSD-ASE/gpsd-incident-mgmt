@@ -1,5 +1,6 @@
 package ie.tcd.scss.gpsd.incidentmgmt.controller;
 
+import ie.tcd.scss.gpsd.incidentmgmt.model.dto.CreateIncidentDTO;
 import ie.tcd.scss.gpsd.incidentmgmt.model.dto.IncidentDTO;
 import ie.tcd.scss.gpsd.incidentmgmt.service.IncidentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -39,7 +40,7 @@ public class IncidentManagementController {
 
     @PostMapping
     @Operation(summary = "Create a new incident", description = "Add a new incident to the system")
-    public ResponseEntity<IncidentDTO> createIncident(@RequestBody IncidentDTO incidentDTO) {
+    public ResponseEntity<IncidentDTO> createIncident(@RequestBody CreateIncidentDTO incidentDTO) {
         log.info("Request received: Creating new incident");
         return ResponseEntity.ok(incidentService.createIncident(incidentDTO));
     }

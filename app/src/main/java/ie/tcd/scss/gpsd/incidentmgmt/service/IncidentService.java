@@ -6,6 +6,7 @@ import ie.tcd.scss.gpsd.incidentmgmt.exception.InvalidInputException;
 import ie.tcd.scss.gpsd.incidentmgmt.exception.ResourceNotFoundException;
 import ie.tcd.scss.gpsd.incidentmgmt.mapper.IncidentMapper;
 import ie.tcd.scss.gpsd.incidentmgmt.model.dao.Incident;
+import ie.tcd.scss.gpsd.incidentmgmt.model.dto.CreateIncidentDTO;
 import ie.tcd.scss.gpsd.incidentmgmt.model.dto.IncidentDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,7 +46,7 @@ public class IncidentService {
     }
 
     @Transactional
-    public IncidentDTO createIncident(IncidentDTO dto) {
+    public IncidentDTO createIncident(CreateIncidentDTO dto) {
         Incident incident = incidentMapper.map(dto);
         incident.setIncidentId(UUID.randomUUID());
         incident.setCreatedAt(ZonedDateTime.now());
