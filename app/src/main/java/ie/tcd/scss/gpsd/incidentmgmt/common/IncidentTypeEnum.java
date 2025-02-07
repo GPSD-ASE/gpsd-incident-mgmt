@@ -1,5 +1,6 @@
 package ie.tcd.scss.gpsd.incidentmgmt.common;
 
+import ie.tcd.scss.gpsd.incidentmgmt.exception.InvalidInputException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -22,7 +23,7 @@ public enum IncidentTypeEnum {
                 return type;
             }
         }
-        throw new IllegalArgumentException("Invalid IncidentType ID: " + id);
+        throw new InvalidInputException("Invalid IncidentType ID: " + id);
     }
 
     public static IncidentTypeEnum fromName(String name) {
@@ -31,6 +32,6 @@ public enum IncidentTypeEnum {
                 return type;
             }
         }
-        throw new IllegalArgumentException("Invalid IncidentType Name: " + name);
+        throw new InvalidInputException("Invalid IncidentType Name: " + name);
     }
 }

@@ -1,5 +1,6 @@
 package ie.tcd.scss.gpsd.incidentmgmt.common;
 
+import ie.tcd.scss.gpsd.incidentmgmt.exception.InvalidInputException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -22,7 +23,7 @@ public enum IncidentStatusEnum {
                 return status;
             }
         }
-        throw new IllegalArgumentException("Invalid IncidentStatus ID: " + id);
+        throw new InvalidInputException("Invalid IncidentStatus ID: " + id);
     }
 
     public static IncidentStatusEnum fromName(String name) {
@@ -31,6 +32,6 @@ public enum IncidentStatusEnum {
                 return status;
             }
         }
-        throw new IllegalArgumentException("Invalid IncidentStatus Name: " + name);
+        throw new InvalidInputException("Invalid IncidentStatus Name: " + name);
     }
 }
