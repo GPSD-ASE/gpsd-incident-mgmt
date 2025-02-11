@@ -50,7 +50,7 @@ public class IncidentService {
         Incident incident = incidentMapper.map(dto);
         incident.setIncidentId(UUID.randomUUID());
         incident.setCreatedAt(ZonedDateTime.now());
-        incident.setUpdatedAt(ZonedDateTime.now());
+        incident.setUpdatedAt(incident.getCreatedAt());
         log.info("Creating new incident: {}", incident);
         return incidentMapper.map(incidentRepository.save(incident));
     }

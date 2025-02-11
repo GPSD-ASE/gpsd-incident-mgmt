@@ -3,6 +3,7 @@ package ie.tcd.scss.gpsd.incidentmgmt.mapper;
 import ie.tcd.scss.gpsd.incidentmgmt.common.IncidentStatusEnum;
 import ie.tcd.scss.gpsd.incidentmgmt.common.IncidentTypeEnum;
 import ie.tcd.scss.gpsd.incidentmgmt.common.SeverityLevelEnum;
+import ie.tcd.scss.gpsd.incidentmgmt.exception.InvalidInputException;
 import ie.tcd.scss.gpsd.incidentmgmt.model.dao.Incident;
 import ie.tcd.scss.gpsd.incidentmgmt.model.dto.CreateIncidentDTO;
 import ie.tcd.scss.gpsd.incidentmgmt.model.dto.IncidentDTO;
@@ -72,7 +73,12 @@ public interface IncidentMapper {
 
     @Named("stringToUuid")
     static UUID stringToUuid(String uuid) {
-        return uuid != null ? UUID.fromString(uuid) : null;
+        try {
+            return uuid != null ? UUID.fromString(uuid) : null;
+        } catch (IllegalArgumentException e) {
+            throw new InvalidInputException("Invalid UUID format: " + uuid);
+        }
+
     }
 
 }
