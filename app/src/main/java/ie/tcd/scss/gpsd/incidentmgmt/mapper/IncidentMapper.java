@@ -10,11 +10,12 @@ import ie.tcd.scss.gpsd.incidentmgmt.model.dto.IncidentDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 import java.util.UUID;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface IncidentMapper {
 
     IncidentMapper INSTANCE = Mappers.getMapper(IncidentMapper.class);
@@ -25,13 +26,6 @@ public interface IncidentMapper {
     @Mapping(source = "incidentId", target = "incidentId", qualifiedByName = "uuidToString")
     @Mapping(source = "userId", target = "userId", qualifiedByName = "uuidToString")
     IncidentDTO map(Incident incident);
-
-    @Mapping(source = "incidentType", target = "incidentTypeId", qualifiedByName = "mapIncidentTypeReverse")
-    @Mapping(source = "severityLevel", target = "severityLevelId", qualifiedByName = "mapSeverityLevelReverse")
-    @Mapping(source = "incidentStatus", target = "incidentStatusId", qualifiedByName = "mapIncidentStatusReverse")
-    @Mapping(source = "incidentId", target = "incidentId", qualifiedByName = "stringToUuid")
-    @Mapping(source = "userId", target = "userId", qualifiedByName = "stringToUuid")
-    Incident map(IncidentDTO incidentDTO);
 
     @Mapping(source = "userId", target = "userId", qualifiedByName = "stringToUuid")
     Incident map(CreateIncidentDTO createIncidentDTO);

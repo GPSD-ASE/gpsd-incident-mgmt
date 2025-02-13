@@ -9,7 +9,7 @@ version = "0.0.1-SNAPSHOT"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21);
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
@@ -19,6 +19,16 @@ dependencies {
     // Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("org.mockito:mockito-core")
+
+    // Test Containers
+    testImplementation("org.testcontainers:postgresql:1.20.4")
+    testImplementation("org.testcontainers:junit-jupiter:1.20.4")
+
+    // Jacoco
+//    testImplementation("org.jacoco:core")
 
     // Database / Postgres related
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
