@@ -35,10 +35,10 @@ jobs:
           run: cd ${{ github.workspace }}/app && ls -la
 
         - name: Make Gradle wrapper executable
-          run: chmod +x gradlew
+          run: cd ${{ github.workspace }}/app && chmod +x gradlew
   
         - name: Verify Gradle installation
-          run: ./gradlew --version
+          run: cd ${{ github.workspace }}/app && ./gradlew --version
 
 
   
