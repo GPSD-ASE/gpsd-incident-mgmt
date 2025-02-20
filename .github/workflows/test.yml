@@ -1,0 +1,62 @@
+name: Run Java Tests (TDD)
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+  
+        - name: Set up Java
+          uses: actions/setup-java@v3
+          with:
+            distribution: 'temurin'
+            java-version: '21'
+            cache: gradle
+  
+        - name: Verify Java installation
+          run: java -version
+
+        - name: List project files (Debugging)
+          run: ls -la ${{ github.workspace }}
+  
+
+        - name: Change to the correct directory
+          run: ls -la
+          working-directory: app
+
+        - name: Make Gradle wrapper executable
+          run: chmod +x gradlew
+          working-directory: app
+  
+        - name: Verify Gradle installation
+          run: ./gradlew --version
+          working-directory: app
+
+        - name: Ensure build.gradle exists
+          run: | 
+            if [ ! -f build.gradle ] && [ ! -f build.gradle.kts ]; then
+            echo "Error: build.gradle or build.gradle.kts is missing!"
+            exit 1
+            fi
+          working-directory: app
+  
+
+  
+        - name: Install dependencies
+          run: ./gradlew build -x test
+          working-directory: app
+  
+        - name: Run Tests
+          run: ./gradlew test
+          working-directory: app

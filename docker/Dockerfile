@@ -1,14 +1,23 @@
-FROM python:3.9-slim
+FROM amazoncorretto:21 AS builder
 
 WORKDIR /app
 
-COPY ./docker/requirements.txt .
+COPY app/gradle gradle
+COPY app/gradlew gradlew
+COPY app/build.gradle.kts app/settings.gradle.kts ./
 
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+RUN chmod +x ./gradlew
 
-COPY ./src .
+COPY app/src src
+
+RUN ./gradlew clean build test --no-daemon
+
+FROM amazoncorretto:21
+
+WORKDIR /app
+
+COPY --from=builder /app/build/libs/*.jar app.jar
 
 EXPOSE 9000
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "9000"]
+ENTRYPOINT ["java", "-jar", "app.jar"]

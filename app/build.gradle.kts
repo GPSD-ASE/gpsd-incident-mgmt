@@ -9,7 +9,7 @@ version = "0.0.1-SNAPSHOT"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21);
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
@@ -19,6 +19,17 @@ dependencies {
     // Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("org.mockito:mockito-core")
+    testImplementation("org.mockito:mockito-junit-jupiter")
+
+    // Test Containers
+//    testImplementation("org.testcontainers:postgresql:1.20.4")
+//    testImplementation("org.testcontainers:junit-jupiter:1.20.4")
+
+    // Jacoco
+//    testImplementation("org.jacoco:core")
 
     // Database / Postgres related
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -33,8 +44,10 @@ dependencies {
     annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
 
     // Springdoc OpenAPI for Spring Boot 3
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4")
 
+    // Vault
+//    implementation("org.springframework.cloud:spring-cloud-starter-vault-config")
 
 }
 
