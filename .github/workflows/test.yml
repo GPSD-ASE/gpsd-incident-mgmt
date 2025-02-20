@@ -32,7 +32,7 @@ jobs:
   
 
         - name: Change to the correct directory
-          run: cd app
+          run: cd /app &&
                 ls -la
   
         - name: Verify Gradle installation
