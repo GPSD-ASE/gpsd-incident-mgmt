@@ -22,10 +22,11 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     testImplementation("org.mockito:mockito-core")
+    testImplementation("org.mockito:mockito-junit-jupiter")
 
     // Test Containers
-    testImplementation("org.testcontainers:postgresql:1.20.4")
-    testImplementation("org.testcontainers:junit-jupiter:1.20.4")
+//    testImplementation("org.testcontainers:postgresql:1.20.4")
+//    testImplementation("org.testcontainers:junit-jupiter:1.20.4")
 
     // Jacoco
 //    testImplementation("org.jacoco:core")
@@ -45,6 +46,8 @@ dependencies {
     // Springdoc OpenAPI for Spring Boot 3
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4")
 
+    // Vault
+//    implementation("org.springframework.cloud:spring-cloud-starter-vault-config")
 
 }
 
