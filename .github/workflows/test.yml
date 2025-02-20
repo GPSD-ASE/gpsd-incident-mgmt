@@ -1,4 +1,4 @@
-name: Run Go Tests (TDD)
+name: Run Java Tests (TDD)
 
 on:
   push:
@@ -32,8 +32,7 @@ jobs:
   
 
         - name: Change to the correct directory
-          run: cd /app &&
-                ls -la
+          run: cd ${{ github.workspace }}/app && ls -la
   
         - name: Verify Gradle installation
           run: ./gradlew --version
