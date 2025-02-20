@@ -26,9 +26,6 @@ jobs:
   
         - name: Verify Java installation
           run: java -version
-  
-        - name: Verify Gradle installation
-          run: ./gradlew --version
 
         - name: List project files (Debugging)
           run: ls -la ${{ github.workspace }}
@@ -36,6 +33,11 @@ jobs:
 
         - name: Change to the correct directory
           run: cd ${{ github.workspace }}/app
+  
+        - name: Verify Gradle installation
+          run: ./gradlew --version
+
+
   
 
         - name: Ensure build.gradle exists
