@@ -32,28 +32,31 @@ jobs:
   
 
         - name: Change to the correct directory
-          run: cd ${{ github.workspace }}/app && ls -la
+          run: ls -la
+          working-directory: app
 
         - name: Make Gradle wrapper executable
-          run: cd ${{ github.workspace }}/app && chmod +x gradlew
+          run: chmod +x gradlew
+          working-directory: app
   
         - name: Verify Gradle installation
-          run: cd ${{ github.workspace }}/app && ./gradlew --version
-
-
-  
+          run: ./gradlew --version
+          working-directory: app
 
         - name: Ensure build.gradle exists
-          run: |
+          run: | 
             if [ ! -f build.gradle ] && [ ! -f build.gradle.kts ]; then
-              echo "Error: build.gradle or build.gradle.kts is missing!"
-              exit 1
+            echo "Error: build.gradle or build.gradle.kts is missing!"
+            exit 1
             fi
+          working-directory: app
   
 
   
         - name: Install dependencies
           run: ./gradlew build -x test
+          working-directory: app
   
         - name: Run Tests
           run: ./gradlew test
+          working-directory: app
