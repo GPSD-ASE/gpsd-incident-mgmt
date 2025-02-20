@@ -33,6 +33,9 @@ jobs:
 
         - name: Change to the correct directory
           run: cd ${{ github.workspace }}/app && ls -la
+
+        - name: Make Gradle wrapper executable
+          run: chmod +x gradlew
   
         - name: Verify Gradle installation
           run: ./gradlew --version
@@ -47,8 +50,7 @@ jobs:
               exit 1
             fi
   
-        - name: Make Gradle wrapper executable
-          run: chmod +x gradlew
+
   
         - name: Install dependencies
           run: ./gradlew build -x test
