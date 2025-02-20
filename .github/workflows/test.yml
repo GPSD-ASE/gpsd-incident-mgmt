@@ -32,7 +32,8 @@ jobs:
   
 
         - name: Change to the correct directory
-          run: cd ${{ github.workspace }}/app
+          run: cd app
+                ls -la
   
         - name: Verify Gradle installation
           run: ./gradlew --version
