@@ -21,7 +21,7 @@ public class Incident {
     private UUID incidentId;
 
     @Column(name = "user_id")
-    private UUID userId;
+    private Long userId;
 
     @Column(name = "latitude")
     private Double latitude;

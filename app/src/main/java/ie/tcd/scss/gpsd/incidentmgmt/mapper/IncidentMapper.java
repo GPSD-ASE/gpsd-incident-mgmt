@@ -24,10 +24,8 @@ public interface IncidentMapper {
     @Mapping(source = "severityLevelId", target = "severityLevel", qualifiedByName = "mapSeverityLevel")
     @Mapping(source = "incidentStatusId", target = "incidentStatus", qualifiedByName = "mapIncidentStatus")
     @Mapping(source = "incidentId", target = "incidentId", qualifiedByName = "uuidToString")
-    @Mapping(source = "userId", target = "userId", qualifiedByName = "uuidToString")
     IncidentDTO map(Incident incident);
 
-    @Mapping(source = "userId", target = "userId", qualifiedByName = "stringToUuid")
     Incident map(CreateIncidentDTO createIncidentDTO);
 
     @Named("mapIncidentType")
