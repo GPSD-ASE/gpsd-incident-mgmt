@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 public class CreateIncidentDTO {
 
-    private String userId;
+    private Long userId;
     private Double latitude;
     private Double longitude;
     private Long incidentTypeId;

@@ -13,7 +13,7 @@ import java.time.ZonedDateTime;
 public class IncidentDTO {
 
     private String incidentId;
-    private String userId;
+    private Long userId;
     private Double latitude;
     private Double longitude;
     private String incidentType;
