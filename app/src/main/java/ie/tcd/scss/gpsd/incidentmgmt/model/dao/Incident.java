@@ -29,13 +29,13 @@ public class Incident {
     @Column(name = "longitude")
     private Double longitude;
 
-    @Column(name = "incident_type_id")
+    @Column(name = "type_id")
     private Long incidentTypeId;
 
-    @Column(name = "severity_level_id")
+    @Column(name = "severity_id")
     private Long severityLevelId;
 
-    @Column(name = "incident_status_id")
+    @Column(name = "status_id")
     private Long incidentStatusId;
 
     @Column(name = "created_at")
