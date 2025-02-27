@@ -7,7 +7,7 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "incident", schema = "gpsd_inc")
+@Table(name = "incident", schema = "public")
 @Getter
 @Setter
 @NoArgsConstructor
