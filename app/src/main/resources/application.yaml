@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:jdbc:postgresql://v2202501253104311605.luckysrv.de:5432/gpsd_postgres
+    url: jdbc:postgresql://v2202501253104311605.luckysrv.de:5432/gpsd_postgres
     username: postgres
     password: parkingautomaterftw
     driver-class-name: org.postgresql.Driver
