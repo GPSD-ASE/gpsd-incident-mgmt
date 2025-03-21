@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://gpsd.cl6iq2cqe5xo.eu-west-1.rds.amazonaws.com:5432/gpsd
+    url: jdbc:postgres://v2202501253104311605.luckysrv.de:5432/gpsd_postgres
     username: postgres
-    password: asdfghjkl1
+    password: parkingautomaterftw
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:
@@ -11,6 +11,8 @@ spring:
 
 server:
   port: 9000
+  tomcat: 
+    relaxed-hosts: [.*]
 
 springdoc:
   swagger-ui:
