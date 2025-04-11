@@ -26,6 +26,9 @@ public interface IncidentMapper {
     @Mapping(source = "incidentId", target = "incidentId", qualifiedByName = "uuidToString")
     IncidentDTO map(Incident incident);
 
+    @Mapping(source = "numOfInjuredPeople", target = "injuredCount")
+    @Mapping(source = "numOfAffectedPeople", target = "affectedCount")
+    @Mapping(source = "additionalNotes", target = "notes")
     Incident map(CreateIncidentDTO createIncidentDTO);
 
     @Named("mapIncidentType")

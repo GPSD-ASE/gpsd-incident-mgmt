@@ -49,6 +49,11 @@ dependencies {
     // Vault
 //    implementation("org.springframework.cloud:spring-cloud-starter-vault-config")
 
+    // Reactive Spring WebFlux
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
+
+//    implementation("io.netty:netty-resolver-dns-native-macos:4.1.117.Final:osx-x86_64")
+
 }
 
 tasks.withType<Test> {

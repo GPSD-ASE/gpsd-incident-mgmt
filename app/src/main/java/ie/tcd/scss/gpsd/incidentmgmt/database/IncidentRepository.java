@@ -10,5 +10,4 @@ import java.util.UUID;
 
 @Repository
 public interface IncidentRepository extends JpaRepository<Incident, UUID> {
-    Page<Incident> findAll(Pageable pageable);
 }

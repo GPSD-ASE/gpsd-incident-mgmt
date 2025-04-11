@@ -7,9 +7,10 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Slf4j
@@ -23,12 +24,8 @@ public class IncidentManagementController {
 
     @GetMapping
     @Operation(summary = "Get all incidents", description = "Retrieve a list of all incidents")
-    public ResponseEntity<Page<IncidentDTO>> getAllIncidents(
-            @RequestParam(defaultValue = "0") int page,  // Default to page 0
-            @RequestParam(defaultValue = "10") int size  // Default to 10 results per page
-    ) {
-        log.info("Request received: Fetching incidents - Page: {}, Size: {}", page, size);
-        return ResponseEntity.ok(incidentService.getAllIncidents(page, size));
+    public ResponseEntity<List<IncidentDTO>> getAllIncidents() {
+        return ResponseEntity.ok(incidentService.getAllIncidents());
     }
 
     @GetMapping("/{id}")
