@@ -23,12 +23,6 @@ public class Incident {
     @Column(name = "user_id")
     private Long userId;
 
-    @Column(name = "latitude")
-    private Double latitude;
-
-    @Column(name = "longitude")
-    private Double longitude;
-
     @Column(name = "type_id")
     private Long incidentTypeId;
 
@@ -37,6 +31,27 @@ public class Incident {
 
     @Column(name = "status_id")
     private Long incidentStatusId;
+
+    @Column(name = "latitude")
+    private Double latitude;
+
+    @Column(name = "longitude")
+    private Double longitude;
+
+    @Column(name = "radius")
+    private Double radius;
+
+    @Column(name = "geo_name")
+    private String geoName;
+
+    @Column(name = "injured_count")
+    private Long injuredCount;
+
+    @Column(name = "affected_count")
+    private Long affectedCount;
+
+    @Column(name = "notes")
+    private String notes;
 
     @Column(name = "created_at")
     private ZonedDateTime createdAt;

@@ -1,13 +1,16 @@
 package ie.tcd.scss.gpsd.incidentmgmt.service;
 
 import ie.tcd.scss.gpsd.incidentmgmt.common.IncidentStatusEnum;
+import ie.tcd.scss.gpsd.incidentmgmt.database.IncidentImageRepository;
 import ie.tcd.scss.gpsd.incidentmgmt.database.IncidentRepository;
 import ie.tcd.scss.gpsd.incidentmgmt.exception.InvalidInputException;
 import ie.tcd.scss.gpsd.incidentmgmt.exception.ResourceNotFoundException;
 import ie.tcd.scss.gpsd.incidentmgmt.mapper.IncidentMapper;
 import ie.tcd.scss.gpsd.incidentmgmt.model.dao.Incident;
+import ie.tcd.scss.gpsd.incidentmgmt.model.dao.IncidentImage;
 import ie.tcd.scss.gpsd.incidentmgmt.model.dto.CreateIncidentDTO;
 import ie.tcd.scss.gpsd.incidentmgmt.model.dto.IncidentDTO;
+import ie.tcd.scss.gpsd.incidentmgmt.model.osm.OSMGeoReverseResponseDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -15,9 +18,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -25,13 +33,13 @@ import java.util.UUID;
 public class IncidentService {
 
     private final IncidentRepository incidentRepository;
+    private final IncidentImageRepository incidentImageRepository;
     private final IncidentMapper incidentMapper;
+    private final OSMService osmService;
 
-    public Page<IncidentDTO> getAllIncidents(int page, int size) {
-        log.info("Fetching all incidents - Page: {}, Size: {}", page, size);
-        Pageable pageable = PageRequest.of(page, size);
-        Page<Incident> incidents = incidentRepository.findAll(pageable);
-        return incidents.map(incidentMapper::map);
+    public List<IncidentDTO> getAllIncidents() {
+        List<Incident> incidents = incidentRepository.findAll();
+        return incidents.stream().map(incidentMapper::map).toList();
     }
 
     public IncidentDTO getIncidentById(String incidentId) {
@@ -47,12 +55,21 @@ public class IncidentService {
 
     @Transactional
     public IncidentDTO createIncident(CreateIncidentDTO dto) {
+
         Incident incident = incidentMapper.map(dto);
         incident.setIncidentId(UUID.randomUUID());
         incident.setCreatedAt(ZonedDateTime.now());
         incident.setUpdatedAt(incident.getCreatedAt());
+        OSMGeoReverseResponseDTO osmGeoReverseResponseDTO =
+                osmService.getReverseGeoCode(incident.getLatitude(), incident.getLongitude());
+        incident.setGeoName(osmGeoReverseResponseDTO.getDisplayName());
         log.info("Creating new incident: {}", incident);
-        return incidentMapper.map(incidentRepository.save(incident));
+        incidentRepository.save(incident);
+
+        return incidentMapper.map(incident);
+
+
+
     }
 
     @Transactional

@@ -21,5 +21,10 @@ public class IncidentDTO {
     private String incidentStatus;
     private ZonedDateTime createdAt;
     private ZonedDateTime updatedAt;
+    private Long injuredCount;
+    private Long affectedCount;
+    private Double radius;
+    private String notes;
+    private String geoName;
 
 }

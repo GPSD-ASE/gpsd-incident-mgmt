@@ -9,10 +9,13 @@ import lombok.Getter;
 public enum IncidentTypeEnum {
 
     FIRE(1L, "Fire"),
-    THEFT(2L, "Flood"),
-    MEDICAL(3L, "Earthquake"),
-    ACCIDENT(4L, "Accident"),
-    CHEMICAL_LEAK(5L, "Chemical Leak");
+    FLOOD(2L, "Flood"),
+    RIOT(3L, "Riot"),
+    EARTHQUAKE(4L, "Earthquake"),
+    ACCIDENT(5L, "Accident"),
+    CHEMICAL_LEAK(6L, "Chemical Leak"),
+    INFRASTRUCTURE_DAMAGE(7L, "Infrastructure Damage");
+
 
     private final Long id;
     private final String name;

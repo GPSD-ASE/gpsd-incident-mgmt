@@ -12,7 +12,7 @@ public enum IncidentStatusEnum {
     IN_PROGRESS(2L, "In Progress"),
     VERIFIED(3L, "Verified"),
     RESOLVED(4L, "Resolved"),
-    CLOSED(5L, "Closed");
+    CLOSED(5L, "Cancelled");
 
     private final Long id;
     private final String name;
