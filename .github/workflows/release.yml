@@ -122,7 +122,8 @@ jobs:
       - name: Commit changes
         if: steps.check_changes.outputs.changes == 'true'
         run: |
-          git add helm/Chart.yaml
+          git status
+          git add helm/Chart.yaml helm/values.yaml
           if [ -f app/build.gradle.kts ]; then git add app/build.gradle.kts; fi
           if [ -f CHANGELOG.md ]; then git add CHANGELOG.md; fi
           git commit -m "chore: bump version to ${{ steps.bump_version.outputs.new_version }}"
