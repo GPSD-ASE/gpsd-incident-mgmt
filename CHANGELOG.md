@@ -7,9 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.7] - 2025-04-03
+## [0.0.8] - 2025-04-11
 
 
 ### Fixed
-6d91e1f fix: add release pipeline
+45d7b01 fix: add refresh in Makefile
 
