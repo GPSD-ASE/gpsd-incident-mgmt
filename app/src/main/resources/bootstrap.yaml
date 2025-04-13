@@ -5,7 +5,7 @@ spring:
       authentication: kubernetes
       kubernetes:
         role: ${VAULT_ROLE}
-        service-account-token-file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        service-account-token-file: ${VAULT_TOKEN}
       kv:
         enabled: true
         backend: secret
