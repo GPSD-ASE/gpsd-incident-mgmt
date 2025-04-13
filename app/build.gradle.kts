@@ -47,7 +47,7 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4")
 
     // Vault
-//    implementation("org.springframework.cloud:spring-cloud-starter-vault-config")
+    implementation("org.springframework.cloud:spring-cloud-starter-vault-config")
 
     // Reactive Spring WebFlux
     implementation("org.springframework.boot:spring-boot-starter-webflux")

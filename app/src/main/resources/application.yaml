@@ -1,13 +1,18 @@
 spring:
   datasource:
-    url: jdbc:postgresql://gpsd.cl6iq2cqe5xo.eu-west-1.rds.amazonaws.com:5432/gpsd
+    url: jdbc:postgresql://v2202501253104311605.luckysrv.de:5432/postgres
     username: postgres
-    password: asdfghjkl1
+    password: ${INCIDENT_MGMT_DB_PASS}
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BROKER}
+  main:
+    allow-bean-definition-overriding: true
 
 server:
   port: 9000
@@ -17,3 +22,12 @@ springdoc:
     path: /docs
   api-docs:
     path: /api-docs
+
+
+internal:
+  api:
+    resource-mapping:
+      host: ${DEMO_GPSD_RESOURCE_MAPPING_PORT}
+    escalation-service:
+      host: ${DEMO_GPSD_ESCALATION_MGMT_PORT}
+
