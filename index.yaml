@@ -3,12 +3,12 @@ entries:
   gpsd-incident-mgmt:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-04-13T20:58:32.373623529Z"
+    created: "2025-04-13T21:27:48.134769624Z"
     description: A Helm chart for deploying the GPSD Incident Management service.
-    digest: 1409c60885d1f93c0dd0eff61896153f23d04559bc888e2f02e13fb7344c3fe8
+    digest: 12feca425b562c7104995bf6e0645e7e662c6f58dd1995d394bc17a00ef54d3f
     name: gpsd-incident-mgmt
     type: application
     urls:
-    - https://gpsd-ase.github.io/gpsd-incident-mgmt/gpsd-incident-mgmt-0.0.15.tgz
-    version: 0.0.15
-generated: "2025-04-13T20:58:32.372962656Z"
+    - https://gpsd-ase.github.io/gpsd-incident-mgmt/gpsd-incident-mgmt-0.0.16.tgz
+    version: 0.0.16
+generated: "2025-04-13T21:27:48.134367343Z"
