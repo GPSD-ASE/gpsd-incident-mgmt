@@ -13,6 +13,8 @@ java {
     }
 }
 
+extra["springCloudVersion"] = "2024.0.1"
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
 
@@ -47,13 +49,24 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4")
 
     // Vault
-//    implementation("org.springframework.cloud:spring-cloud-starter-vault-config")
+    implementation("org.springframework.cloud:spring-cloud-starter-vault-config")
 
     // Reactive Spring WebFlux
     implementation("org.springframework.boot:spring-boot-starter-webflux")
 
+    // kafka
+    implementation("org.springframework.kafka:spring-kafka")
+
 //    implementation("io.netty:netty-resolver-dns-native-macos:4.1.117.Final:osx-x86_64")
 
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+    }
 }
 
 tasks.withType<Test> {

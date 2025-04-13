@@ -2,16 +2,21 @@ spring:
   datasource:
     url: jdbc:postgresql://v2202501253104311605.luckysrv.de:5432/postgres
     username: postgres
-    password: parkingautomaterftw
+    password: ${INCIDENT_MGMT_DB_PASS}
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
+  kafka:
+    bootstrap-servers: ${KAFKA_BROKER}
+  main:
+    allow-bean-definition-overriding: true
+
 server:
   port: 9000
-  tomcat: 
+  tomcat:
     relaxed-hosts: [.*]
 
 springdoc:
@@ -19,3 +24,12 @@ springdoc:
     path: /docs
   api-docs:
     path: /api-docs
+
+
+internal:
+  api:
+    resource-mapping:
+      host: ${DEMO_GPSD_RESOURCE_MAPPING_PORT}
+    escalation-service:
+      host: ${DEMO_GPSD_ESCALATION_MGMT_PORT}
+

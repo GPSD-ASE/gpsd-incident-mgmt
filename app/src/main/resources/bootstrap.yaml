@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    vault:
+      uri: ${VAULT_ADDR}
+      authentication: kubernetes
+      kubernetes:
+        role: ${VAULT_ROLE}
+        service-account-token-file: /var/run/secrets/kubernetes.io/serviceaccount/token
+      kv:
+        enabled: true
+        backend: secret
+        default-context: gpsd/incident-mgmt
+        application-name: gpsd/incident-mgmt

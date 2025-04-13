@@ -10,6 +10,7 @@ import ie.tcd.scss.gpsd.incidentmgmt.model.dao.Incident;
 import ie.tcd.scss.gpsd.incidentmgmt.model.dao.IncidentImage;
 import ie.tcd.scss.gpsd.incidentmgmt.model.dto.CreateIncidentDTO;
 import ie.tcd.scss.gpsd.incidentmgmt.model.dto.IncidentDTO;
+import ie.tcd.scss.gpsd.incidentmgmt.model.ert.SimulationKafkaPayload;
 import ie.tcd.scss.gpsd.incidentmgmt.model.osm.OSMGeoReverseResponseDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +37,8 @@ public class IncidentService {
     private final IncidentImageRepository incidentImageRepository;
     private final IncidentMapper incidentMapper;
     private final OSMService osmService;
+    private final KafkaIncidentPublisher kafkaIncidentPublisher;
+    private final ERTService ertService;
 
     public List<IncidentDTO> getAllIncidents() {
         List<Incident> incidents = incidentRepository.findAll();
@@ -56,6 +59,7 @@ public class IncidentService {
     @Transactional
     public IncidentDTO createIncident(CreateIncidentDTO dto) {
 
+        // Save Incident details in DB
         Incident incident = incidentMapper.map(dto);
         incident.setIncidentId(UUID.randomUUID());
         incident.setCreatedAt(ZonedDateTime.now());
@@ -65,8 +69,31 @@ public class IncidentService {
         incident.setGeoName(osmGeoReverseResponseDTO.getDisplayName());
         log.info("Creating new incident: {}", incident);
         incidentRepository.save(incident);
+        IncidentDTO incidentDTO = incidentMapper.map(incident);
 
-        return incidentMapper.map(incident);
+        // Call resource mapping and escalation service to determine ERT requirements.
+        SimulationKafkaPayload kafkaPayload = null;
+        try {
+            kafkaPayload = ertService.getERTResponse(incidentDTO);
+        } catch (Exception e) {
+            log.info("ERTResponse could not be processed: {}", e.getMessage());
+        }
+
+        if (kafkaPayload == null) {
+            kafkaPayload = new SimulationKafkaPayload();
+            kafkaPayload.setIncident_type(incidentDTO.getIncidentType());
+            kafkaPayload.setId(incidentDTO.getIncidentId());
+            kafkaPayload.setLocation(new SimulationKafkaPayload.Location(incidentDTO.getLatitude(), incidentDTO.getLongitude()));
+            kafkaPayload.setFt_count(5L);
+            kafkaPayload.setAmb_count(5L);
+            kafkaPayload.setPc_count(5L);
+            log.info("Sending default response for ERT: {}", kafkaPayload);
+        }
+
+        // Send message to kafka
+        kafkaIncidentPublisher.publishLatestIncident(kafkaPayload);
+
+        return incidentDTO;
 
 
 
