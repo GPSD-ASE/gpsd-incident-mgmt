@@ -52,7 +52,12 @@ dependencies {
     // Reactive Spring WebFlux
     implementation("org.springframework.boot:spring-boot-starter-webflux")
 
+    // kafka
+    implementation("org.springframework.kafka:spring-kafka")
+
 //    implementation("io.netty:netty-resolver-dns-native-macos:4.1.117.Final:osx-x86_64")
+
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
 
 }
 
