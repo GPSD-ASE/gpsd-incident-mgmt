@@ -7,9 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.11] - 2025-04-13
+## [0.0.12] - 2025-04-13
 
 
-### Fixed
-82b3665 fix: update values.yaml tag to 0.0.10
+### Maintenance
+- Minor updates and improvements
 
