@@ -7,9 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.10] - 2025-04-11
+## [0.0.11] - 2025-04-13
 
 
 ### Fixed
-25c67d8 fix: wrong number of files in git add
+82b3665 fix: update values.yaml tag to 0.0.10
 
