@@ -7,9 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.14] - 2025-04-13
+## [0.0.15] - 2025-04-13
 
 
 ### Fixed
-661df6c fix: vault token
+ae521a0 fix: vault
+66251b3 fix: vault
 

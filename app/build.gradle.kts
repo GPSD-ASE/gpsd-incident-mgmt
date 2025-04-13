@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "ie.tcd.scss.gpsd"
-version = "0.0.14"
+version = "0.0.15"
 
 java {
     toolchain {
