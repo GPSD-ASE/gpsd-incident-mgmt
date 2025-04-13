@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://v2202501253104311605.luckysrv.de:5432/postgres
     username: postgres
-    password: ${INCIDENT_MGMT_DB_PASS}
+    password: parkingautomaterftw
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:
@@ -10,7 +10,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
   kafka:
-    bootstrap-servers: ${KAFKA_BROKER}
+    bootstrap-servers: 152.53.124.121:9092
   main:
     allow-bean-definition-overriding: true
 
