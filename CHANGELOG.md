@@ -7,10 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.15] - 2025-04-13
+## [0.0.16] - 2025-04-13
 
 
 ### Fixed
-ae521a0 fix: vault
-66251b3 fix: vault
+d999266 fix: rearrange env
 
