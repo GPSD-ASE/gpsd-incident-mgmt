@@ -4,7 +4,7 @@ replicaCount: 1
 
 image:
   repository: gpsd/gpsd-incident-mgmt
-  tag: v0.0.16
+  tag: v0.0.17
   pullPolicy: Always
 
 service:
