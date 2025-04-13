@@ -13,6 +13,8 @@ java {
     }
 }
 
+extra["springCloudVersion"] = "2024.0.1"
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
 
@@ -59,6 +61,12 @@ dependencies {
 
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
 
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+    }
 }
 
 tasks.withType<Test> {
