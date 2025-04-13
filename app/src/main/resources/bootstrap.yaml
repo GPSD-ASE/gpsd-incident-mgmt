@@ -5,9 +5,9 @@ spring:
       authentication: kubernetes
       kubernetes:
         role: ${VAULT_ROLE}
-        service-account-token-file: ${VAULT_TOKEN}
       kv:
         enabled: true
         backend: secret
         default-context: gpsd/incident-mgmt
         application-name: gpsd/incident-mgmt
+      token: ${VAULT_TOKEN}
