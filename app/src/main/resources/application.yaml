@@ -16,6 +16,8 @@ spring:
 
 server:
   port: 9000
+  tomcat:
+    relaxed-hosts: [.*]
 
 springdoc:
   swagger-ui:
